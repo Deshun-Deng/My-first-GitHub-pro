@@ -28,6 +28,7 @@ import random
 import requests
 import numpy as np
 import matplotlib.pyplot as plt
+import schedule
 class crawer:
 	def __init__(self):
 		self.url = url
@@ -83,7 +84,7 @@ if __name__ == '__main__':
 	# spider.tiebaSpider(bpage, epage)
 	# spider.heart_plot()
 
-from HTMLTEXT import *
+# from HTMLTEXT import *
 class pymail:
 	def python_mail(self):
 		# coding:utf-8
@@ -110,8 +111,24 @@ class pymail:
 			print('Done')
 		except smtplib.SMTPException:
 			print('Error')
+
+	def job(self):
+		print("hello world!")
+	def sche_foes(self):
+
+		# schedule.every(10).minutes.do(self.job)
+		# schedule.every().hour.do(self.job)
+		# schedule.every().day.at("10:30").do(self.job)
+		# schedule.every(5).to(10).minutes.do(self.job)
+		# schedule.every().monday.do(self.job)
+		# schedule.every().wednesday.at("13:15").do(self.job)
+		schedule.every().minute.at(":17").do(self.job)
+		n = 0
+		while True:
+			schedule.run_pending()
+			time.sleep(1)
 if __name__ == '__main__':
-    mail = pymail().python_mail()
+    mail = pymail().sche_foes()
 
 
 
