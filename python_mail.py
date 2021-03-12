@@ -1,34 +1,11 @@
-# import urllib.request as ure
-# import re
-
-# url = r'http://www.baidu.com'
-
-# rp = ure.urlopen(url).read().decode()
-# pattern = r'<title>(.*?)</title>'
-# data = re.findall(pattern, rp)
-# print(''.join(data))
-
-# from urllib import request
-# import random
-
-# proxylist = [
-# 	{"36.22.77.166":"3128"},
-# 	{"223.242.224.159":"9999"},
-# 	{"60.168.207.108":"8888"},
-# 	{"27.220.164.186":"9000"},
-# 	{"218.66.253.145":"80"}
-# ]
-
-# proxyHandler = random.choice(proxylist)
-# print(proxyHandler)
-import urllib
-from urllib import request
 import time
 import random
 import requests
 import numpy as np
 import matplotlib.pyplot as plt
 import schedule
+
+
 class crawer:
 	def __init__(self):
 		self.url = url
@@ -64,28 +41,11 @@ class crawer:
 		plt.plot(x, y, color= 'r')
 
 
+from HTMLTEXT import *
 
-if __name__ == '__main__':
-	# kw = imput("tieba name:")
-	# bpage = int(input("begin page:"))
-	# epage = int(input("end page:"))
-	kw = "java"
-	bpage = 1
-	epage = 5
 
-	url = "http://tieba.baidu.com/f?"
-	# key = urllib.parse.urlencode({"kw": kw})
-	key = "kw=java"
-
-	url = url + key
-
-	# spider = crawer()
-	# spider.url = url
-	# spider.tiebaSpider(bpage, epage)
-	# spider.heart_plot()
-
-# from HTMLTEXT import *
 class pymail:
+
 	def python_mail(self):
 		# coding:utf-8
 
@@ -96,7 +56,7 @@ class pymail:
 		port = 25  # 设置发件服务器端口号。注意，这里有SSL和非SSL两种形式
 		sender = 'yagmail_mypymail@163.com'  # 设置发件邮箱，一定要自己注册的邮箱
 		pwd = 'DUKVWBTAZLXGPVZH'  # 设置发件邮箱的密码，等会登陆会用到
-		receiver = 'ahahaemiliod@163.com'  # 设置邮件接收人，可以是扣扣邮箱
+		receiver = 'PauulParker@gmail.com'  # 设置邮件接收人，可以是扣扣邮箱
 		body = '<h1>Hi</h1><p>test</p>'  # 设置邮件正文，这里是支持HTML的
 
 		msg = MIMEText(html, 'html')  # 设置正文为符合邮件格式的HTML内容
@@ -114,6 +74,7 @@ class pymail:
 
 	def job(self):
 		print("hello world!")
+
 	def sche_foes(self):
 
 		# schedule.every(10).minutes.do(self.job)
@@ -127,8 +88,41 @@ class pymail:
 		while True:
 			schedule.run_pending()
 			time.sleep(1)
-if __name__ == '__main__':
-    mail = pymail().sche_foes()
+
+
+class Dprossing:
+	'''dp找出最长递减子序列'''
+	def __init__(self):
+		self.height = [300, 207, 155, 398, 299, 170, 158, 65]
+
+	def dp_processing(self):
+		num_hgt = len(self.height)
+		dp = [1]*num_hgt
+		dp2 = [1]*num_hgt
+		trace = [[i] for i in self.height]
+		trace2 = [[i] for i in self.height]
+		for i in range(1, num_hgt):
+			for j in range(i):
+				if self.height[i] < self.height[j]:
+					submax = max(dp[i], dp[j]+1)
+					if submax > dp[i]:
+						dp[i] = submax
+						trace[i] = trace[j] + [self.height[i]]
+				else:
+					submax = max(dp2[i], dp2[j] + 1)
+					if submax > dp2[i]:
+						dp2[i] = submax
+						trace2[i] = trace2[j] + [self.height[i]]
+		print("done")
+		for i in range(num_hgt):
+			print(f"{dp[i]}: {trace[i]}")
+		print("#"*100)
+		for i in range(num_hgt):
+			print(f"{dp2[i]}: {trace2[i]}")
+
+
+solution = Dprossing()
+solution.dp_processing()
 
 
 
