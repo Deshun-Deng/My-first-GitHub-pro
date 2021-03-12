@@ -66,7 +66,7 @@ class pdf_joy:
             num = self.pdf_reader.numPages
             ele = page_count[0]
             page_count = [ele]*(num//ele)
-            if num%ele != 0:
+            if num % ele != 0:
                 page_count += [num-ele*(num//ele)]
         page_idx = []
         for i in range(1, len(page_count)+1):
